@@ -22,7 +22,7 @@
         <!-- FORMULARIO BASICO  SE ENVIAN LAS VARIABLES A FICHERO ENVIAR.HTML-->
     <form action="enviar.html" id="formulario" method="post">
   <H3 class="text-center" >FORMULARIO DE CONTACTO</H3><hr>
-    <div class="alert alert-success alert-dismissible fade show" role="alert" id="alerta" ></div>
+    <div class="alert alert- alert-dismissible fade show" role="alert" id="alerta" ></div>
     <p>
       Nombre: <input type="text" name="nombre" id="nombre" class="form-control">
     </p>
@@ -48,8 +48,8 @@
     <script>
         
         
-    // DECLARAMOS EL TEXTO QUE IRA CAMBIANDO DEACUERO A LA VALIDACION  Y SE VINCULARA A UNA ALERTA  
-   var alerta = "* Todos los campos son obligatorios"; 
+    // DECLARAMOS EL TEXTO QUE IRA CAMBIANDO DEACUERO A LA VALIDACION  Y SE VINCULARA A UNA ALERTA  EL CUAL CAMBIARA DE COLOR
+   var alerta = ""; 
   document.getElementById("alerta").innerHTML =alerta;              
         
         
@@ -68,25 +68,26 @@ evento.preventDefault();
         var correo = document.getElementById('email').value;
         var telefono = document.getElementById('telefono').value;
         var mensaje = document.getElementById('mensaje').value;
-        
+  
+
     
-        // SI ALGUN CAMPO ESTA VACIO ENTONCES
+        // SI ALGUN CAMPO ESTA VACIO ENTONCES 
     
   if(nombre.length == 0 ||  correo.length == 0 || telefono.length == 0 || mensaje.length == 0) {
     
-    var alerta = "Favor de rellenar todos los campos."; 
+    var alerta = "* Todos los campos son obligatorios";   
     document.getElementById("alerta").innerHTML =alerta;  
-      
+    document.getElementById("alerta").className = "alert alert-warning alert-dismissible fade show";    
   }
-  
-// SI EL TELEFONO NO CONTIENE 10 DIGITOS Y NO ES NUMERO
+
+// SI EL TELEFONO NO CONTIENE 10 DIGITOS Y NO ES NUMERO 
 
     else if (telefono.length != 10 || isNaN(telefono) ) {
     var alerta = "Favor de ingresar un número de teléfono valido a 10 digitos"; 
     document.getElementById("alerta").innerHTML =alerta;   
-   
+    document.getElementById("alerta").className = "alert alert-danger alert-dismissible fade show";  
     }
-    
+
     // SI TODAS LAS CONDICIONES FUERON VALIDADAS
      else
         {

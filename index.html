@@ -68,8 +68,18 @@ evento.preventDefault();
         var correo = document.getElementById('email').value;
         var telefono = document.getElementById('telefono').value;
         var mensaje = document.getElementById('mensaje').value;
-  
-
+    
+    // EXPRESIONES REGULARES
+    
+    var excorreo = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    
+    var numeros = /^([0-9 ])+$/;
+    
+    var letras = /^([á-ú-Á-Ú-a-z-A-Z-ñ ._])+$/;
+    
+    var exmensaje = /^([á-ú-Á-Ú-a-z-A-Z0-9-ñ ._¿?¡!])+$/;
+    
+    
     
         // SI ALGUN CAMPO ESTA VACIO ENTONCES 
     
@@ -79,14 +89,45 @@ evento.preventDefault();
     document.getElementById("alerta").innerHTML =alerta;  
     document.getElementById("alerta").className = "alert alert-warning alert-dismissible fade show";    
   }
+    
+      // SI EL NOMBRE NO CONTIENE SOLO LETRAS Y ES MAYOR A 20 CARACTERES
+
+    else if (nombre.length > 20 || letras.test(nombre) === false ) {
+    var alerta = "Favor de ingresar nombre completo - maximo 20 caracteres"; 
+    document.getElementById("alerta").innerHTML =alerta;   
+    document.getElementById("alerta").className = "alert alert-danger alert-dismissible fade show";
+    
+    }
+    
+   
+    
+    // SI EL CORREO NO CUMPLE CRITERIO Y ES MAYOR A 35 CARACTERES
+
+    else if (correo.length > 35 || excorreo.test(correo) === false ) {
+    var alerta = "Favor de ingresar un correo de electronico valido - maximo 35 digitos"; 
+    document.getElementById("alerta").innerHTML =alerta;   
+    document.getElementById("alerta").className = "alert alert-danger alert-dismissible fade show";
+    
+    }
 
 // SI EL TELEFONO NO CONTIENE 10 DIGITOS Y NO ES NUMERO 
 
-    else if (telefono.length != 10 || isNaN(telefono) ) {
+    else if (telefono.length != 10 || numeros.test(telefono) === false ) {
     var alerta = "Favor de ingresar un número de teléfono valido a 10 digitos"; 
     document.getElementById("alerta").innerHTML =alerta;   
     document.getElementById("alerta").className = "alert alert-danger alert-dismissible fade show";  
     }
+    
+    
+     // SI EL MENSAJE NO CONTIENE SOLO LETRAS Y NUMEROS  Y ES MAYOR A 40 CARACTERES
+
+    else if (mensaje.length > 40 || exmensaje.test(mensaje) === false ) {
+    var alerta = "Favor de ingresar mensaje - maximo 40 caracteres"; 
+    document.getElementById("alerta").innerHTML =alerta;   
+    document.getElementById("alerta").className = "alert alert-danger alert-dismissible fade show";
+    
+    }
+        
 
     // SI TODAS LAS CONDICIONES FUERON VALIDADAS
      else
